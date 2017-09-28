@@ -2,7 +2,7 @@
 
 ![alt text](demo.png)
 
-Interact with [Things 3][1] using [Alfred 3][2].
+Interact with [Things 3][1] using [Alfred][2].
 
 ## Download and Installation
 
@@ -20,18 +20,17 @@ To report a bug or request a feature, please [create an issue][4] or [submit a p
 
 ## Credits
 
-This workflow relies on [OneUpdater][6] and [Notificator][7] by Vítor Galvão and [qWorkflow][8] library by Ursan Razvan.
+This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][7] by Vítor Galvão.
 
 ## License
 
-**Things** workflow code is released under the [MIT License][9].
+**Things** workflow code is released under the [MIT License][8].
 
 [1]:https://culturedcode.com/things/
 [2]:http://www.alfredapp.com/
 [3]:https://github.com/xilopaint/alfred-things/releases/latest
 [4]:https://github.com/xilopaint/alfred-things/issues
 [5]:https://github.com/xilopaint/alfred-things/pulls
-[6]:https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
-[7]:https://github.com/vitorgalvao/notificator
-[8]:https://github.com/qlassiqa/qWorkflow
-[9]:https://opensource.org/licenses/MIT
+[6]:https://github.com/qlassiqa/qWorkflow
+[7]:https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
+[8]:https://opensource.org/licenses/MIT
