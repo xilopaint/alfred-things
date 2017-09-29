@@ -234,7 +234,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Mark as completed</string>
+				<string>Mark as Completed</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -244,7 +244,7 @@
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Mark as canceled</string>
+				<string>Mark as Canceled</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -254,7 +254,7 @@
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
-				<string>Delete</string>
+				<string>Delete To-do</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -400,7 +400,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"showToDos"}</string>
+				<string>run script "things.applescript" with parameters {"showToDos"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -460,7 +460,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"showToDoInThings", "{query}"}</string>
+				<string>run script "things.applescript" with parameters {"showToDoInThings", "{query}"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -483,7 +483,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"markAsCompleted", "{query}"}</string>
+				<string>run script "things.applescript" with parameters {"markAsCompleted", "{query}"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -623,7 +623,7 @@ fi #find</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"showLists"}</string>
+				<string>run script "things.applescript" with parameters {"showLists"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -652,7 +652,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"showListInThings"}</string>
+				<string>run script "things.applescript" with parameters {"showListInThings"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -693,7 +693,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"markAsCanceled", "{query}"}</string>
+				<string>run script "things.applescript" with parameters {"markAsCanceled", "{query}"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -729,7 +729,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"deleteToDo", "{query}"}</string>
+				<string>run script "things.applescript" with parameters {"deleteToDo", "{query}"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -790,7 +790,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"addToDo", "{query}"}</string>
+				<string>run script "things.applescript" with parameters {"addToDo", "{query}"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -844,7 +844,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.scpt" with parameters {"emptyTrash"}</string>
+				<string>run script "things.applescript" with parameters {"emptyTrash"}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -920,7 +920,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1100</integer>
 			<key>ypos</key>
-			<integer>650</integer>
+			<integer>690</integer>
 		</dict>
 		<key>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</key>
 		<dict>
@@ -947,6 +947,8 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 		</dict>
 		<key>7A390B5C-3786-4DF4-8B3C-7681A1DA5042</key>
 		<dict>
+			<key>note</key>
+			<string>Show Lists</string>
 			<key>xpos</key>
 			<integer>190</integer>
 			<key>ypos</key>
@@ -957,7 +959,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>710</integer>
 			<key>ypos</key>
-			<integer>650</integer>
+			<integer>690</integer>
 		</dict>
 		<key>894661DD-1987-421B-BD3E-509388201DC1</key>
 		<dict>
@@ -980,7 +982,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>560</integer>
 			<key>ypos</key>
-			<integer>650</integer>
+			<integer>690</integer>
 		</dict>
 		<key>9090664F-5CFA-48A2-B5F1-4EEEE4535BBF</key>
 		<dict>
@@ -1014,7 +1016,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>900</integer>
 			<key>ypos</key>
-			<integer>650</integer>
+			<integer>690</integer>
 		</dict>
 		<key>AB48B92A-364C-4978-AC71-292006C9C8D4</key>
 		<dict>
@@ -1030,7 +1032,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>680</integer>
+			<integer>720</integer>
 		</dict>
 		<key>D07096D0-CF69-4627-8B39-F57C48DA74D0</key>
 		<dict>
@@ -1043,6 +1045,8 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 		</dict>
 		<key>D229F3C6-3F25-46CB-B0C4-6F07E8C72A22</key>
 		<dict>
+			<key>note</key>
+			<string>Show To-dos</string>
 			<key>xpos</key>
 			<integer>890</integer>
 			<key>ypos</key>
@@ -1075,7 +1079,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
