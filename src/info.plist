@@ -8,19 +8,6 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1943E391-FA03-4E97-80CC-91AA5E85AD64</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>229F7374-A1F9-4E12-90A9-0EB2E53BE6F2</key>
 		<array>
 			<dict>
@@ -51,7 +38,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</string>
+				<string>1943E391-FA03-4E97-80CC-91AA5E85AD64</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -197,7 +184,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</string>
+				<string>1943E391-FA03-4E97-80CC-91AA5E85AD64</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -273,7 +260,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</string>
+				<string>1943E391-FA03-4E97-80CC-91AA5E85AD64</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -299,7 +286,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</string>
+				<string>1943E391-FA03-4E97-80CC-91AA5E85AD64</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -711,19 +698,6 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>seconds</key>
-				<string>0.5</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.delay</string>
-			<key>uid</key>
-			<string>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -899,13 +873,6 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 [8]:https://opensource.org/licenses/MIT</string>
 	<key>uidata</key>
 	<dict>
-		<key>0E7FC725-EE4E-48A9-B257-BBA3A825B23B</key>
-		<dict>
-			<key>xpos</key>
-			<integer>1740</integer>
-			<key>ypos</key>
-			<integer>580</integer>
-		</dict>
 		<key>1943E391-FA03-4E97-80CC-91AA5E85AD64</key>
 		<dict>
 			<key>xpos</key>
@@ -1079,7 +1046,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>

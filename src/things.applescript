@@ -66,7 +66,6 @@ on showToDos(wf, theList)
 
 		add_result of wf with isValid given theUID:"", theArg:"back", theTitle:"Back to Lists", theAutocomplete:"", theSubtitle:theSubtitle, theIcon:"icons/back.png", theType:""
 
-
 		repeat with toDo in to dos of list theList
 			set toDoName to name of toDo
 			set theDueDate to due date of toDo as string
@@ -112,6 +111,7 @@ on markAsCompleted(argv, wf)
 	tell application "Things3"
 		set toDoCompleted to to do named (item 2 of argv as text)
 		set status of toDoCompleted to completed
+		delay 1.3
 	end tell
 end markAsCompleted
 
@@ -120,6 +120,7 @@ on markAsCanceled(argv, wf)
 	tell application "Things3"
 		set toDoCompleted to to do named (item 2 of argv as text)
 		set status of toDoCompleted to canceled
+		delay 1.3
 	end tell
 end markAsCanceled
 
