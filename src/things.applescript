@@ -42,16 +42,19 @@ end run
 
 on showLists(wf)
 	tell application "Things3"
-		repeat with theList in lists of (application "Things3")
+		repeat with theList in lists
 			set theListName to name of theList
-			set theIcon to "icons/" & theListName & ".png"
+			set stdLists to {"Inbox", "Today", "Upcoming", "Anytime", "Someday", "Logbook", "Trash"}
 
-			if theListName is not "Lonely Projects" then
+			if theListName is in stdLists then
+				set theIcon to "icons/" & theListName & ".png"
+				add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
+			else if theListName is not in stdLists and theListName is not "Lonely Projects" then
+				set theIcon to "icons/area.png"
 				add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
 			end if
 		end repeat
 	end tell
-
 	return wf's to_xml("")
 end showLists
 
@@ -69,6 +72,7 @@ on showToDos(wf, theList)
 		repeat with toDo in to dos of list theList
 			set toDoName to name of toDo
 			set theDueDate to due date of toDo as string
+
 			if theDueDate is "missing value" then
 				set theSubtitle to ""
 			else
