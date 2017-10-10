@@ -74,7 +74,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>9090664F-5CFA-48A2-B5F1-4EEEE4535BBF</string>
+				<string>505E4FEA-777A-4A73-86D9-0E0F242B9348</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -109,19 +109,6 @@
 				<integer>8388608</integer>
 				<key>modifiersubtext</key>
 				<string>Empty the trash</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>843F1C38-2F52-4889-9D00-7F2AD75370A5</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AA85DE63-C665-4D56-AC20-9E903848E933</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -171,7 +158,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>8ECEBCB3-7EB6-4C18-A342-61894886B1CE</string>
+				<string>AA85DE63-C665-4D56-AC20-9E903848E933</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -366,6 +353,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>list</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -407,19 +407,6 @@
 			<string>D229F3C6-3F25-46CB-B0C4-6F07E8C72A22</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>list</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -488,105 +475,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>readonly remote_info_plist='https://raw.githubusercontent.com/xilopaint/alfred-things/master/src/info.plist' # URL of remote info.plist
-readonly workflow_url='https://github.com/xilopaint/alfred-things/raw/master/Things.alfredworkflow' # URL to directly download workflow or workflow download page
-readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
-readonly frequency_check='4' # Days between update checks
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
-    touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9090664F-5CFA-48A2-B5F1-4EEEE4535BBF</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>todo</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>6DB2FF01-2BAD-4CBC-B8F3-191C75E439D6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -634,6 +522,19 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>todo</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>6DB2FF01-2BAD-4CBC-B8F3-191C75E439D6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -651,6 +552,97 @@ fi #find</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>894661DD-1987-421B-BD3E-509388201DC1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist='https://raw.githubusercontent.com/xilopaint/alfred-things/master/src/info.plist'
+readonly workflow_url='xilopaint/alfred-things'
+readonly download_type='github_release'
+readonly frequency_check='4'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" == "${remote_version}" ]]; then
+    touch "${local_info_plist}" # Reset timer by touching local file
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>505E4FEA-777A-4A73-86D9-0E0F242B9348</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -740,25 +732,6 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>addToDo</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>8ECEBCB3-7EB6-4C18-A342-61894886B1CE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -782,21 +755,8 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>addToDo</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>843F1C38-2F52-4889-9D00-7F2AD75370A5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>variables</key>
 				<dict>
 					<key>list</key>
@@ -878,23 +838,23 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1840</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>110</integer>
 		</dict>
 		<key>229F7374-A1F9-4E12-90A9-0EB2E53BE6F2</key>
 		<dict>
 			<key>note</key>
 			<string>Add To-do</string>
 			<key>xpos</key>
-			<integer>1100</integer>
+			<integer>890</integer>
 			<key>ypos</key>
-			<integer>690</integer>
+			<integer>660</integer>
 		</dict>
 		<key>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>560</integer>
+			<integer>600</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>120</integer>
 		</dict>
 		<key>3EB93881-CADF-4C5F-9D6B-11492B272AA7</key>
 		<dict>
@@ -903,14 +863,25 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>310</integer>
+		</dict>
+		<key>505E4FEA-777A-4A73-86D9-0E0F242B9348</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>890</integer>
+			<key>ypos</key>
+			<integer>380</integer>
 		</dict>
 		<key>6DB2FF01-2BAD-4CBC-B8F3-191C75E439D6</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>410</integer>
+			<integer>380</integer>
 		</dict>
 		<key>7A390B5C-3786-4DF4-8B3C-7681A1DA5042</key>
 		<dict>
@@ -919,46 +890,21 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>190</integer>
 			<key>ypos</key>
-			<integer>410</integer>
-		</dict>
-		<key>843F1C38-2F52-4889-9D00-7F2AD75370A5</key>
-		<dict>
-			<key>xpos</key>
-			<integer>710</integer>
-			<key>ypos</key>
-			<integer>690</integer>
+			<integer>380</integer>
 		</dict>
 		<key>894661DD-1987-421B-BD3E-509388201DC1</key>
 		<dict>
 			<key>note</key>
 			<string>Show List in Things</string>
 			<key>xpos</key>
-			<integer>560</integer>
+			<integer>600</integer>
 			<key>ypos</key>
-			<integer>410</integer>
+			<integer>380</integer>
 		</dict>
 		<key>8B58F7DE-3D23-4985-BB39-A34A703ED3F7</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
-			<key>ypos</key>
-			<integer>440</integer>
-		</dict>
-		<key>8ECEBCB3-7EB6-4C18-A342-61894886B1CE</key>
-		<dict>
-			<key>xpos</key>
-			<integer>560</integer>
-			<key>ypos</key>
-			<integer>690</integer>
-		</dict>
-		<key>9090664F-5CFA-48A2-B5F1-4EEEE4535BBF</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>710</integer>
 			<key>ypos</key>
 			<integer>410</integer>
 		</dict>
@@ -969,21 +915,21 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>60</integer>
+			<integer>30</integer>
 		</dict>
 		<key>99FD94F8-F88E-4BCB-A0BA-658A75667091</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>150</integer>
 		</dict>
 		<key>AA85DE63-C665-4D56-AC20-9E903848E933</key>
 		<dict>
 			<key>xpos</key>
-			<integer>900</integer>
+			<integer>600</integer>
 			<key>ypos</key>
-			<integer>690</integer>
+			<integer>660</integer>
 		</dict>
 		<key>AB48B92A-364C-4978-AC71-292006C9C8D4</key>
 		<dict>
@@ -992,14 +938,14 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>200</integer>
+			<integer>170</integer>
 		</dict>
 		<key>B2885537-1013-4DDF-9ECD-0B360A48C037</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>720</integer>
+			<integer>690</integer>
 		</dict>
 		<key>D07096D0-CF69-4627-8B39-F57C48DA74D0</key>
 		<dict>
@@ -1008,7 +954,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>760</integer>
+			<integer>730</integer>
 		</dict>
 		<key>D229F3C6-3F25-46CB-B0C4-6F07E8C72A22</key>
 		<dict>
@@ -1017,7 +963,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>890</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>120</integer>
 		</dict>
 		<key>F2074555-17FA-4CD8-9B40-89C3FC65259E</key>
 		<dict>
@@ -1026,14 +972,14 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>480</integer>
+			<integer>450</integer>
 		</dict>
 		<key>F3267DB3-23F8-4095-B65C-DEA83D26E20B</key>
 		<dict>
 			<key>xpos</key>
 			<integer>1130</integer>
 			<key>ypos</key>
-			<integer>90</integer>
+			<integer>60</integer>
 		</dict>
 		<key>FAACADF3-ACD4-4268-90EC-26BCD0BB5598</key>
 		<dict>
@@ -1042,11 +988,11 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 			<key>xpos</key>
 			<integer>1390</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>590</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
