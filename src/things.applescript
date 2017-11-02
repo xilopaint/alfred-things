@@ -1,9 +1,9 @@
 on run argv
-    set theAction to item 1 of argv as text
     set workflowFolder to do shell script "pwd"
     set wlib to load script POSIX file (workflowFolder & "/q_workflow.scpt")
-    set wf to wlib's new_workflow()
 
+    set wf to wlib's new_workflow()
+    set theAction to item 1 of argv as text
     set theList to (system attribute "list")
 
     if argv does not contain "back" then
@@ -24,13 +24,13 @@ on run argv
             addToDo(argv, theList)
 
         else if theAction is "markAsCompleted" then
-            markAsCompleted(argv)
+            markAsCompleted(argv, theList)
 
         else if theAction is "markAsCanceled" then
-            markAsCanceled(argv)
+            markAsCanceled(argv, theList)
 
         else if theAction is "deleteToDo" then
-            deleteToDo(argv)
+            deleteToDo(argv, theList)
 
         else if the theAction is "emptyTrash" then
             emptyTrash()
@@ -124,34 +124,34 @@ end showToDoInThings
 
 on addToDo(argv, theList)
     tell application "Things3"
-        set toDo to (item 2 of argv as text)
-        set newToDo to make new to do with properties {name:toDo} at beginning of list theList
+        set toDoName to (item 2 of argv as text)
+        set newToDo to make new to do with properties {name:toDoName} at beginning of list theList
         move newToDo to list theList
     end tell
 end addToDo
 
 
-on markAsCompleted(argv)
+on markAsCompleted(argv, theList)
     tell application "Things3"
-        set toDoCompleted to to do named (item 2 of argv as text)
-        set status of toDoCompleted to completed
+        set toDo to to do named (item 2 of argv as text) of list theList
+        set status of toDo to completed
         delay 1.3
     end tell
 end markAsCompleted
 
 
-on markAsCanceled(argv)
+on markAsCanceled(argv, theList)
     tell application "Things3"
-        set toDoCompleted to to do named (item 2 of argv as text)
-        set status of toDoCompleted to canceled
+        set toDo to to do named (item 2 of argv as text) of list theList
+        set status of toDo to canceled
         delay 1.3
     end tell
 end markAsCanceled
 
 
-on deleteToDo(argv)
+on deleteToDo(argv, theList)
     tell application "Things3"
-        set toDo to to do named (item 2 of argv as text)
+        set toDo to to do named (item 2 of argv as text) of list theList
         move toDo to list "Trash"
     end tell
 end deleteToDo

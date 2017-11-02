@@ -718,7 +718,7 @@ fi</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Enter a title for the new to-do</string>
+				<string>Enter a title for the new to-do.</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -992,7 +992,7 @@ This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.3</string>
+	<string>1.3.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
