@@ -42,14 +42,15 @@ end run
 
 on showLists(wf)
     tell application "Things3"
-        repeat with theList in lists
-            set theListName to name of theList
-            set stdLists to {"Inbox", "Today", "Upcoming", "Anytime", "Someday", "Logbook", "Trash"}
+        repeat with n from 1 to count of lists
+            set theListName to name of item n of lists
+            set theIcons to {"inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"}
 
-            if theListName is in stdLists then
-                set theIcon to "icons/" & theListName & ".png"
+            if n < 9 and n ≠ 6 then
+                set theIcon to "icons/" & item n of theIcons & ".png"
                 add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
-            else if theListName is not in stdLists and theListName is not "Lonely Projects" then
+
+            else if n > 8 and n ≠ 6 then
                 set theIcon to "icons/area.png"
                 add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
             end if
