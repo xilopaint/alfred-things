@@ -18,7 +18,7 @@ on run argv
             showListInThings(theList)
 
         else if theAction is "showToDoInThings" then
-            showToDoInThings(argv)
+            showToDoInThings(argv, theList)
 
         else if theAction is "addToDo" then
             addToDo(argv, theList)
@@ -44,13 +44,12 @@ on showLists(wf)
     tell application "Things3"
         repeat with n from 1 to count of lists
             set theListName to name of item n of lists
-            set theIcons to {"inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"}
 
             if n < 9 and n ≠ 6 then
-                set theIcon to "icons/" & item n of theIcons & ".png"
+                set theIcon to "icons/" & theListName & ".png"
                 add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
 
-            else if n > 8 and n ≠ 6 then
+            else if n > 8 then
                 set theIcon to "icons/area.png"
                 add_result of wf with isValid given theUID:"", theArg:theListName, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
             end if
@@ -115,10 +114,10 @@ on showListInThings(theList)
 end showListInThings
 
 
-on showToDoInThings(argv)
+on showToDoInThings(argv, theList)
     tell application "Things3"
         activate
-        show to do (item 2 of argv as text)
+        show to do named (item 2 of argv as text) of list theList
     end tell
 end showToDoInThings
 
