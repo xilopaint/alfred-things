@@ -99,7 +99,14 @@ on showToDos(wf, theList)
                     end if
                 end if
             end if
-            add_result of wf with isValid given theUID:"", theArg:toDoName, theTitle:toDoName, theAutocomplete:"", theSubtitle:theSubtitle, theIcon:"icons/todo.png", theType:""
+
+            if not exists project named toDoName
+                set theIcon to "icons/todo.png"
+            else
+                set theIcon to "icons/project.png"
+            end if
+
+            add_result of wf with isValid given theUID:"", theArg:toDoName, theTitle:toDoName, theAutocomplete:"", theSubtitle:theSubtitle, theIcon:theIcon, theType:""
         end repeat
     end tell
     return wf's to_xml("")
