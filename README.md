@@ -20,7 +20,7 @@ To report a bug or request a feature, please [create an issue][4] or [submit a p
 
 ## Credits
 
-This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][7] by Vítor Galvão. The to do icon is created by [Jason Zigrino][8] and released under the [Creative Commons BY-NC-ND 3.0 license][9].
+This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][7] by Vítor Galvão. The to-do icon is created by [Jason Zigrino][8] and released under the [Creative Commons BY-NC-ND 3.0 license][9].
 
 ## License
 
