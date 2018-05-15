@@ -28,7 +28,7 @@ on run argv
             addToDo(argv, theListID)
 
         else if theAction is "markAsCompleted" then
-            markAsCompleted(argvD)
+            markAsCompleted(argv)
 
         else if theAction is "markAsCanceled" then
             markAsCanceled(argv)
