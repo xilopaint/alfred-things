@@ -16,23 +16,22 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
 
 ## Contribute
 
-To report a bug or request a feature, please [create an issue][4] or [submit a pull request][5] on GitHub.
+To report a bug or request a feature, please [create an issue][4] or [submit a pull request][5].
 
 ## Credits
 
-This workflow relies on [qWorkflow][6] library by Ursan Razvan and [OneUpdater][7] by Vítor Galvão. The to-do icon is created by [Jason Zigrino][8] and released under the [Creative Commons BY-NC-ND 3.0 license][9].
+This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is created by [Jason Zigrino][7] and released under the [Creative Commons BY-NC-ND 3.0 license][8].
 
 ## License
 
-**Things** workflow code is released under the [MIT License][10].
+**Things** workflow is released under the [MIT License][9].
 
 [1]:https://culturedcode.com/things/
 [2]:http://www.alfredapp.com/
 [3]:https://github.com/xilopaint/alfred-things/releases/latest
 [4]:https://github.com/xilopaint/alfred-things/issues
 [5]:https://github.com/xilopaint/alfred-things/pulls
-[6]:https://github.com/qlassiqa/qWorkflow
-[7]:https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
-[8]:https://jasonzigrino.deviantart.com
-[9]:https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode
-[10]:https://opensource.org/licenses/MIT
+[6]:https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
+[7]:https://jasonzigrino.deviantart.com
+[8]:https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode
+[9]:https://opensource.org/licenses/MIT

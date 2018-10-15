@@ -1,8 +1,7 @@
 on run argv
     set workflowFolder to do shell script "pwd"
-    set wlib to load script POSIX file (workflowFolder & "/q_workflow.scpt")
-
-    set wf to wlib's new_workflow()
+    set wlib to load script POSIX file (workflowFolder & "/lib/lib.scpt")
+    set wf to wlib's workflow()
     set theAction to item 1 of argv as text
     set theListID to (system attribute "list")
     set theProjectID to (system attribute "project")
@@ -53,27 +52,28 @@ on showLists(wf)
 
             if n < 9 and n ≠ 6 then
                 set theIcon to "icons/" & item n of theIcons & ".png"
-                add_result of wf with isValid given theUID:"", theArg:theListID, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
+                add_item of wf with valid given title:theListName, subtitle:"", arg:theListID, icon:theIcon
 
             else if n > 8 then
                 set theIcon to "icons/area.png"
-                add_result of wf with isValid given theUID:"", theArg:theListID, theTitle:theListName, theAutocomplete:"", theSubtitle:"", theIcon:theIcon, theType:""
+                add_item of wf with valid given title:theListName, subtitle:"", arg:theListID, icon:theIcon
+
             end if
         end repeat
     end tell
-    return wf's to_xml("")
+    return wf's to_json()
 end showLists
 
 
 on showToDos(wf, theListID)
     tell application "Things3"
-        if wf's q_is_empty(to dos of list id theListID)
+        if wf's is_empty(to dos of list id theListID)
             set theSubtitle to "Empty list"
         else
             set theSubtitle to ""
         end if
 
-        add_result of wf with isValid given theUID:"", theArg:"back", theTitle:"Back to Lists", theAutocomplete:"", theSubtitle:theSubtitle, theIcon:"icons/back.png", theType:""
+        add_item of wf with valid given title:"Back to Lists", subtitle:theSubtitle, arg:"back", icon:"icons/back.png"
 
         repeat with toDo in to dos of list id theListID
             set toDoName to name of toDo
@@ -113,10 +113,10 @@ on showToDos(wf, theListID)
                 set theIcon to "icons/project.png"
             end if
 
-            add_result of wf with isValid given theUID:"", theArg:theID, theTitle:toDoName, theAutocomplete:"", theSubtitle:theSubtitle, theIcon:theIcon, theType:""
+            add_item of wf with valid given title:toDoName, subtitle:theSubtitle, arg:theID, icon:theIcon
         end repeat
     end tell
-    return wf's to_xml("")
+    return wf's to_json()
 end showToDos
 
 
@@ -138,13 +138,13 @@ end showToDoInThings
 
 on showToDosInProject(wf, theProjectID)
     tell application "Things3"
-        if wf's q_is_empty(to dos of project id theProjectID)
+        if wf's is_empty(to dos of project id theProjectID)
             set theSubtitle to "Empty list"
         else
             set theSubtitle to ""
         end if
 
-        add_result of wf with isValid given theUID:"", theArg:"back", theTitle:"Back to Lists", theAutocomplete:"", theSubtitle:theSubtitle, theIcon:"icons/back.png", theType:""
+        add_item of wf with valid given title:"Back to Lists", subtitle:theSubtitle, arg:"back", icon:"icons/back.png"
 
         repeat with toDo in (to dos of project id theProjectID)
             set toDoName to name of toDo
@@ -178,10 +178,10 @@ on showToDosInProject(wf, theProjectID)
                 end if
             end if
 
-            add_result of wf with isValid given theUID:"", theArg:theID, theTitle:toDoName, theAutocomplete:"", theSubtitle:theSubtitle, theIcon:"icons/todo.png", theType:""
+            add_item of wf with valid given title:toDoName, subtitle:theSubtitle, arg:theID, icon:"icons/todo.png"
         end repeat
     end tell
-    return wf's to_xml("")
+    return wf's to_json()
 end showToDoInProject
 
 
