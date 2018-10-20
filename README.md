@@ -10,9 +10,13 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
 
 ## Usage
 
-* Use the keyword `todo` to show Things lists and action any of them for displaying the corresponding to-dos.
+* Use the keyword todo to show Things lists and action any of them for displaying the corresponding to-dos. 
 * Action a to-do to display it in the Things UI.
-* Try the modifier keys either in lists or in to-dos to know other actions.
+* Try the modifier keys either in lists or in to-dos to know other actions. For example
+  * to mark a to-do as done, select the to-do item and use ⌘+ ↵
+  * to cancel a to-do, select the to-do item and use ⌥ + ↵
+  * to create a to-do just select the target list and use ⌥ + ↵
+  * explore other options by trying out the modifier keys, alone or in combination
 
 ## Contribute
 
