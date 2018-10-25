@@ -10,9 +10,16 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
 
 ## Usage
 
-* Use the keyword `todo` to show Things lists and action any of them for displaying the corresponding to-dos.
-* Action a to-do to display it in the Things UI.
-* Try the modifier keys either in lists or in to-dos to know other actions.
+* Use the keyword `todo` to show Things lists and press `↩` to explore the contained to-dos of the selected list. The following modifier keys can be used to trigger actions in lists:
+  * `⌘ + ↩` to show the selected list in Things UI;
+  * `⌥ + ↩` to add a to-do to the selected list;
+  * `fn + ↩` to empty the Trash.
+
+* Select a to-do and press `↩` for displaying it in Things UI. The following modifier keys can be used to trigger actions in to-dos:
+  * `⌘ + ↩` to mark a to-do as completed;
+  * `⌥ + ↩` to mark a to-do as canceled;
+  * `⌃ + ↩` to delete a to-do;
+  * `fn + ↩` to empty the Trash.
 
 ## Contribute
 
