@@ -3,8 +3,9 @@ on run argv
     set wlib to load script POSIX file (workflowFolder & "/lib/lib.scpt")
     set wf to wlib's workflow()
     set theAction to item 1 of argv as text
-    set theListID to (system attribute "list")
-    set theProjectID to (system attribute "project")
+    set listId to (system attribute "list")
+    set projectId to (system attribute "project")
+    set tagId to (system attribute "tag")
 
     if argv does not contain "back" then
 
@@ -12,19 +13,25 @@ on run argv
             showLists(wf)
 
         else if theAction is "showToDos" then
-            showToDos(wf, theListID)
+            showToDos(wf, listId)
 
         else if theAction is "showListInThings" then
-            showListInThings(theListID)
+            showListInThings(listId)
 
         else if theAction is "showToDoInThings" then
             showToDoInThings(argv)
 
         else if theAction is "showToDosInProject" then
-            showToDosInProject(wf, theProjectID)
+            showToDosInProject(wf, projectId)
+
+        else if theAction is "showTagsInList" then
+            showTagsInList(wf, listId)
+
+        else if theAction is "showToDosInTag" then
+            showToDosInTag(wf, tagId)
 
         else if theAction is "addToDo" then
-            addToDo(argv, theListID)
+            addToDo()
 
         else if theAction is "markAsCompleted" then
             markAsCompleted(argv)
@@ -46,17 +53,17 @@ end run
 on showLists(wf)
     tell application "Things3"
         repeat with n from 1 to count of lists
-            set theListName to name of item n of lists
-            set theListID to id of item n of lists
-            set theIcons to {"inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"}
+            set listName to name of item n of lists
+            set listId to id of item n of lists
+            set icons to {"inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"}
 
             if n < 9 and n ≠ 6 then
-                set theIcon to "icons/" & item n of theIcons & ".png"
-                add_item of wf with valid given title:theListName, subtitle:"", arg:theListID, icon:theIcon
+                set icon to "icons/" & item n of icons & ".png"
+                add_item of wf with valid given title:listName, subtitle:"", arg:listId, icon:icon
 
             else if n > 8 then
-                set theIcon to "icons/area.png"
-                add_item of wf with valid given title:theListName, subtitle:"", arg:theListID, icon:theIcon
+                set icon to "icons/area.png"
+                add_item of wf with valid given title:listName, subtitle:"", arg:listId, icon:icon
 
             end if
         end repeat
@@ -65,65 +72,65 @@ on showLists(wf)
 end showLists
 
 
-on showToDos(wf, theListID)
+on showToDos(wf, listId)
     tell application "Things3"
-        if wf's is_empty(to dos of list id theListID)
-            set theSubtitle to "Empty list"
+        if wf's is_empty(to dos of list id listId)
+            set subtitle to "Empty list"
         else
-            set theSubtitle to ""
+            set subtitle to ""
         end if
 
-        add_item of wf with valid given title:"Back to Lists", subtitle:theSubtitle, arg:"back", icon:"icons/back.png"
+        add_item of wf with valid given title:"Back to Lists", subtitle:subtitle, arg:"back", icon:"icons/back.png"
 
-        repeat with toDo in to dos of list id theListID
+        repeat with toDo in to dos of list id listId
             set toDoName to name of toDo
-            set theDueDate to due date of toDo
-            set theID to id of toDo
+            set dueDate to due date of toDo
+            set toDoId to id of toDo
 
-            if theDueDate is missing value then
-                set theSubtitle to ""
+            if dueDate is missing value then
+                set subtitle to ""
             else
-                set theInterval to ((theDueDate) - (current date)) / days
+                set interval to ((dueDate) - (current date)) / days
 
-                if theInterval > 0 then
-                    set theInterval to round theInterval rounding up
-                    if not theInterval = 1 then
-                        set theSubtitle to "⚑ " & theInterval & " days left"
+                if interval > 0 then
+                    set interval to round interval rounding up
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days left"
                     else
-                        set theSubtitle to "⚑ " & theInterval & " day left"
+                        set subtitle to "⚑ " & interval & " day left"
                     end if
 
-                else if theInterval > -1 and theInterval < 0 then
-                    set theSubtitle to "⚑ today"
+                else if interval > -1 and interval < 0 then
+                    set subtitle to "⚑ today"
 
-                else if theInterval < -1 then
-                    set theInterval to -1 * theInterval
-                    set theInterval to round theInterval rounding down
-                    if not theInterval = 1 then
-                        set theSubtitle to "⚑ " & theInterval & " days ago"
+                else if interval < -1 then
+                    set interval to -1 * interval
+                    set interval to round interval rounding down
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days ago"
                     else
-                        set theSubtitle to "⚑ " & theInterval & " day ago"
+                        set subtitle to "⚑ " & interval & " day ago"
                     end if
                 end if
             end if
 
             if not exists project named toDoName
-                set theIcon to "icons/todo.png"
+                set icon to "icons/todo.png"
             else
-                set theIcon to "icons/project.png"
+                set icon to "icons/project.png"
             end if
 
-            add_item of wf with valid given title:toDoName, subtitle:theSubtitle, arg:theID, icon:theIcon
+            add_item of wf with valid given title:toDoName, subtitle:subtitle, arg:toDoId, icon:icon
         end repeat
     end tell
     return wf's to_json()
 end showToDos
 
 
-on showListInThings(theListID)
+on showListInThings(listId)
     tell application "Things3"
         activate
-        show list id theListID
+        show list id listId
     end tell
 end showListInThings
 
@@ -136,61 +143,124 @@ on showToDoInThings(argv)
 end showToDoInThings
 
 
-on showToDosInProject(wf, theProjectID)
+on showToDosInProject(wf, projectId)
     tell application "Things3"
-        if wf's is_empty(to dos of project id theProjectID)
-            set theSubtitle to "Empty list"
+        if wf's is_empty(to dos of project id projectId)
+            set subtitle to "Empty project"
         else
-            set theSubtitle to ""
+            set subtitle to ""
         end if
 
-        add_item of wf with valid given title:"Back to Lists", subtitle:theSubtitle, arg:"back", icon:"icons/back.png"
+        add_item of wf with valid given title:"Back to Lists", subtitle:subtitle, arg:"back", icon:"icons/back.png"
 
-        repeat with toDo in (to dos of project id theProjectID)
+        repeat with toDo in (to dos of project id projectId)
             set toDoName to name of toDo
-            set theDueDate to due date of toDo
-            set theID to id of toDo
+            set dueDate to due date of toDo
+            set toDoId to id of toDo
 
-            if theDueDate is missing value then
-                set theSubtitle to ""
+            if dueDate is missing value then
+                set subtitle to ""
             else
-                set theInterval to ((theDueDate) - (current date)) / days
+                set interval to ((dueDate) - (current date)) / days
 
-                if theInterval > 0 then
-                    set theInterval to round theInterval rounding up
-                    if not theInterval = 1 then
-                        set theSubtitle to "⚑ " & theInterval & " days left"
+                if interval > 0 then
+                    set interval to round interval rounding up
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days left"
                     else
-                        set theSubtitle to "⚑ " & theInterval & " day left"
+                        set subtitle to "⚑ " & interval & " day left"
                     end if
 
-                else if theInterval > -1 and theInterval < 0 then
-                    set theSubtitle to "⚑ today"
+                else if interval > -1 and interval < 0 then
+                    set subtitle to "⚑ today"
 
-                else if theInterval < -1 then
-                    set theInterval to -1 * theInterval
-                    set theInterval to round theInterval rounding down
-                    if not theInterval = 1 then
-                        set theSubtitle to "⚑ " & theInterval & " days ago"
+                else if interval < -1 then
+                    set interval to -1 * interval
+                    set interval to round interval rounding down
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days ago"
                     else
-                        set theSubtitle to "⚑ " & theInterval & " day ago"
+                        set subtitle to "⚑ " & interval & " day ago"
                     end if
                 end if
             end if
 
-            add_item of wf with valid given title:toDoName, subtitle:theSubtitle, arg:theID, icon:"icons/todo.png"
+            add_item of wf with valid given title:toDoName, subtitle:subtitle, arg:toDoId, icon:"icons/todo.png"
         end repeat
     end tell
     return wf's to_json()
-end showToDoInProject
+end showToDosInProject
 
 
-on addToDo(argv, theListID)
+on showTagsInList(wf, listId)
     tell application "Things3"
-        set toDoName to (item 2 of argv as text)
-        set newToDo to make new to do with properties {name:toDoName} at beginning of list id theListID
-        move newToDo to list id theListID
+        add_item of wf with valid given title:"Back to Lists", subtitle:"", arg:"back", icon:"icons/back.png"
+
+        set listName to text 3 thru -11 of listId
+        set tagNames to {}
+
+        repeat with theTag in tags of to dos of list id listId
+            set tagName to name of theTag
+
+            if tagNames does not contain tagName
+                copy tagName to the end of tagNames
+                set tagId to id of theTag
+                set theUrl to "things:///show?id=" & listName & "&filter=" & tagName
+
+                add_item of wf with valid given title:tagName, subtitle:"", arg:tagId, icon:"icons/tag.png"
+                add_modifier of wf with valid given modkey:"cmd", subtitle:"Show in Things", arg:theUrl
+            end if
+        end repeat
     end tell
+    return wf's to_json()
+end showTagInList
+
+
+on showToDosInTag(wf, tagId)
+    tell application "Things3"
+        add_item of wf with valid given title:"Back to Lists", subtitle:"", arg:"back", icon:"icons/back.png"
+
+        repeat with toDo in (to dos of tag id tagId)
+            set toDoName to name of toDo
+            set dueDate to due date of toDo
+            set toDoId to id of toDo
+
+            if dueDate is missing value then
+                set subtitle to ""
+            else
+                set interval to ((dueDate) - (current date)) / days
+
+                if interval > 0 then
+                    set interval to round interval rounding up
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days left"
+                    else
+                        set subtitle to "⚑ " & interval & " day left"
+                    end if
+
+                else if interval > -1 and interval < 0 then
+                    set subtitle to "⚑ today"
+
+                else if interval < -1 then
+                    set interval to -1 * interval
+                    set interval to round interval rounding down
+                    if not interval = 1 then
+                        set subtitle to "⚑ " & interval & " days ago"
+                    else
+                        set subtitle to "⚑ " & interval & " day ago"
+                    end if
+                end if
+            end if
+
+            add_item of wf with valid given title:toDoName, subtitle:subtitle, arg:toDoId, icon:"icons/todo.png"
+        end repeat
+    end tell
+    return wf's to_json()
+end showToDosInTag
+
+
+on addToDo()
+    tell application "Things3" to show quick entry panel
 end addToDo
 
 

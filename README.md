@@ -13,6 +13,7 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
 * Use the keyword `todo` to show Things lists and press `↩` to explore the contained to-dos of the selected list. The following modifier keys can be used to trigger actions in lists:
   * `⌘ + ↩` to show the selected list in Things UI;
   * `⌥ + ↩` to add a to-do to the selected list;
+  * `⌃ + ↩` to show tags in the target list;
   * `fn + ↩` to empty the Trash.
 
 * Select a to-do and press `↩` for displaying it in Things UI. The following modifier keys can be used to trigger actions in to-dos:
