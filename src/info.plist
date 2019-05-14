@@ -1064,7 +1064,7 @@
 				<key>externaltriggerid</key>
 				<string>showToDos</string>
 				<key>passinputasargument</key>
-				<true/>
+				<false/>
 				<key>passvariables</key>
 				<true/>
 				<key>workflowbundleid</key>
@@ -2442,7 +2442,7 @@ This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is cre
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.7</string>
+	<string>1.7.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
