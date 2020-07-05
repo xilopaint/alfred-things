@@ -22,6 +22,8 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
   * `⌃ + ↩` to delete a to-do;
   * `fn + ↩` to empty the Trash.
 
+* Select a project and press `⇧ + ↩` to explore the contained to-dos.
+
 ## Contribute
 
 To report a bug or request a feature, please [create an issue][4] or [submit a pull request][5].

@@ -57,7 +57,8 @@ on showLists(wf)
             set listId to id of item n of lists
             set icons to {"inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"}
 
-            if n < 9 and n ≠ 6 then
+            if n < 9 and n is not 6 then
+            -- if n < 9 then
                 set icon to "icons/" & item n of icons & ".png"
                 add_item of wf with valid given title:listName, subtitle:"", arg:listId, icon:icon
 
