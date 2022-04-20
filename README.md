@@ -1,22 +1,34 @@
-# Things for Alfred
+<h1 align="center">Things for Alfred</h1>
 
-![alt text](demo.png)
+<p align="center">
+  <a href="https://github.com/xilopaint/alfred-things/releases">
+  <img src="https://img.shields.io/github/release/xilopaint/alfred-things.svg"
+  alt="GitHub Release"></a>
+  <a href="https://github.com/xilopaint/alfred-things/releases">
+  <img src="https://img.shields.io/github/downloads/xilopaint/alfred-things/total.svg"
+  alt="GitHub Downloads"></a>
+</p>
 
-Interact with [Things 3][1] using [Alfred][2].
+<p align="center">
+    <img src="demo.png">
+</p>
 
-## Download and Installation
+## Description
 
-Download the workflow file from [GitHub releases][3] and install it by double-clicking on `Things.alfredworklow`.
+Interact with [Things][1] using [Alfred][2].
 
 ## Usage
 
-* Use the keyword `todo` to show Things lists and press `↩` to explore the contained to-dos of the selected list. The following modifier keys can be used to trigger actions in lists:
+* Use the keyword `todo` to show Things lists and press `↩` to explore the
+  contained to-dos of the selected list. The following modifier keys can be
+  used to trigger actions in lists:
   * `⌘ + ↩` to show the selected list in Things UI;
-  * `⌥ + ↩` to add a to-do to the selected list;
+  * `⌥ + ↩` to invoke the Quick Entry window;
   * `⌃ + ↩` to show tags in the target list;
   * `fn + ↩` to empty the Trash.
 
-* Select a to-do and press `↩` for displaying it in Things UI. The following modifier keys can be used to trigger actions in to-dos:
+* Select a to-do and press `↩` for displaying it in Things UI. The following
+  modifier keys can be used to trigger actions in to-dos:
   * `⌘ + ↩` to mark a to-do as completed;
   * `⌥ + ↩` to mark a to-do as canceled;
   * `⌃ + ↩` to delete a to-do;
@@ -26,11 +38,14 @@ Download the workflow file from [GitHub releases][3] and install it by double-cl
 
 ## Contribute
 
-To report a bug or request a feature, please [create an issue][4] or [submit a pull request][5].
+To report a bug or request a feature, please [create an issue][4] or
+[submit a pull request][5].
 
 ## Credits
 
-This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is created by [Jason Zigrino][7] and released under the [Creative Commons BY-NC-ND 3.0 license][8].
+This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is
+created by [Jason Zigrino][7] and released under the
+[Creative Commons BY-NC-ND 3.0 license][8].
 
 ## License
 
