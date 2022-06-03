@@ -1,12 +1,12 @@
 <h1 align="center">Things for Alfred</h1>
 
 <p align="center">
+  <a href="https://github.com/xilopaint/alfred-things/releases/latest">
+  <img src="https://img.shields.io/github/release/xilopaint/alfred-things.svg"></a>
   <a href="https://github.com/xilopaint/alfred-things/releases">
-  <img src="https://img.shields.io/github/release/xilopaint/alfred-things.svg"
-  alt="GitHub Release"></a>
-  <a href="https://github.com/xilopaint/alfred-things/releases">
-  <img src="https://img.shields.io/github/downloads/xilopaint/alfred-things/total.svg"
-  alt="GitHub Downloads"></a>
+  <img src="https://img.shields.io/github/downloads/xilopaint/alfred-things/total.svg"></a>
+  <a href="https://github.com/xilopaint/alfred-things/blob/main/README.md">
+  <img src="https://img.shields.io/github/license/xilopaint/alfred-things"></a>  
 </p>
 
 <p align="center">
@@ -47,10 +47,6 @@ This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is
 created by [Jason Zigrino][7] and released under the
 [Creative Commons BY-NC-ND 3.0 license][8].
 
-## License
-
-**Things** workflow is released under the [MIT License][9].
-
 [1]:https://culturedcode.com/things/
 [2]:http://www.alfredapp.com/
 [3]:https://github.com/xilopaint/alfred-things/releases/latest
@@ -59,4 +55,3 @@ created by [Jason Zigrino][7] and released under the
 [6]:https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater
 [7]:https://jasonzigrino.deviantart.com
 [8]:https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode
-[9]:https://opensource.org/licenses/MIT
