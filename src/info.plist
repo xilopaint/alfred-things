@@ -300,16 +300,6 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>505E4FEA-777A-4A73-86D9-0E0F242B9348</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>229F7374-A1F9-4E12-90A9-0EB2E53BE6F2</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
@@ -857,6 +847,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>showToDosInProject</string>
 			</dict>
@@ -936,6 +928,8 @@
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -949,6 +943,8 @@
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>project</key>
@@ -967,6 +963,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1008,6 +1006,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1090,6 +1090,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>showToDos</string>
 			</dict>
@@ -1105,6 +1107,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>list</key>
@@ -1123,6 +1127,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1164,6 +1170,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1241,6 +1249,8 @@
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -1273,6 +1283,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>list</key>
@@ -1291,6 +1303,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1326,6 +1340,8 @@
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -1360,6 +1376,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>showLists</string>
 			</dict>
@@ -1375,6 +1393,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1443,97 +1463,6 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist='https://raw.githubusercontent.com/xilopaint/alfred-things/master/src/info.plist'
-readonly workflow_url='xilopaint/alfred-things'
-readonly download_type='github_release'
-readonly frequency_check='4'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download page…'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installing…'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>505E4FEA-777A-4A73-86D9-0E0F242B9348</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
 				<string>run script "things.applescript" with parameters {"addToDo"}</string>
@@ -1556,6 +1485,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1610,6 +1541,8 @@ fi</string>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -1623,6 +1556,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1662,6 +1597,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>showTags</string>
 			</dict>
@@ -1722,6 +1659,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>showToDosInTag</string>
 			</dict>
@@ -1841,6 +1780,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1859,6 +1800,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>list</key>
@@ -1877,6 +1820,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>tag</key>
@@ -1912,6 +1857,8 @@ fi</string>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -1925,6 +1872,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1966,6 +1915,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -1984,12 +1935,14 @@ fi</string>
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
 				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -2020,6 +1973,8 @@ fi</string>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -2046,6 +2001,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>origin</key>
@@ -2101,391 +2058,382 @@ This workflow relies on [OneUpdater][6] by Vítor Galvão. The to-do icon is cre
 		<key>0D3E316F-3292-4631-9119-7402E90B20FB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>520</integer>
+			<real>520</real>
 		</dict>
 		<key>1943E391-FA03-4E97-80CC-91AA5E85AD64</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2350</integer>
+			<real>2350</real>
 			<key>ypos</key>
-			<integer>460</integer>
+			<real>460</real>
 		</dict>
 		<key>229F7374-A1F9-4E12-90A9-0EB2E53BE6F2</key>
 		<dict>
 			<key>note</key>
 			<string>Add To-Do</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<real>770</real>
 			<key>ypos</key>
-			<integer>450</integer>
+			<real>450</real>
 		</dict>
 		<key>32B573A3-37B2-4795-9952-F711E257BE30</key>
 		<dict>
 			<key>note</key>
 			<string>Show Tags</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<real>770</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>374293D7-F1EB-4A96-BE15-3D2DCA45E958</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>400</integer>
+			<real>400</real>
 		</dict>
 		<key>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<real>620</real>
 			<key>ypos</key>
-			<integer>170</integer>
+			<real>170</real>
 		</dict>
 		<key>3D06989E-EC34-4184-8C54-539DAE7FB7D9</key>
 		<dict>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>35</integer>
+			<real>35</real>
 		</dict>
 		<key>3EB93881-CADF-4C5F-9D6B-11492B272AA7</key>
 		<dict>
 			<key>note</key>
 			<string>Mark as Completed</string>
 			<key>xpos</key>
-			<integer>1950</integer>
+			<real>1950</real>
 			<key>ypos</key>
-			<integer>260</integer>
-		</dict>
-		<key>505E4FEA-777A-4A73-86D9-0E0F242B9348</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>960</integer>
-			<key>ypos</key>
-			<integer>410</integer>
+			<real>260</real>
 		</dict>
 		<key>52D0145E-CEC0-40C2-B5E7-682403026B83</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2170</integer>
+			<real>2170</real>
 			<key>ypos</key>
-			<integer>625</integer>
+			<real>625</real>
 		</dict>
 		<key>540CF653-468C-4ECB-AD6D-65334A548104</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2170</integer>
+			<real>2170</real>
 			<key>ypos</key>
-			<integer>365</integer>
+			<real>365</real>
 		</dict>
 		<key>5982D542-803C-4D86-961C-71987A5FB83D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>480</integer>
+			<real>480</real>
 			<key>ypos</key>
-			<integer>170</integer>
+			<real>170</real>
 		</dict>
 		<key>5C00FF8F-070B-48E5-B465-A1219B8443A1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>200</integer>
+			<real>200</real>
 		</dict>
 		<key>5C599D2D-87B9-4CAE-AD80-9D71DD39AFBB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>460</integer>
+			<real>460</real>
 		</dict>
 		<key>6B14FA0A-22DB-4478-A685-2439C7327D16</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>780</integer>
+			<real>780</real>
 		</dict>
 		<key>6C60799D-2C1A-47F4-B53B-868E05505976</key>
 		<dict>
 			<key>note</key>
 			<string>Show To-Dos in Project</string>
 			<key>xpos</key>
-			<integer>1410</integer>
+			<real>1410</real>
 			<key>ypos</key>
-			<integer>30</integer>
+			<real>30</real>
 		</dict>
 		<key>6DB2FF01-2BAD-4CBC-B8F3-191C75E439D6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>400</integer>
+			<real>400</real>
 		</dict>
 		<key>77EBF187-8DC4-49FB-96C8-6406211AF1E2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>660</integer>
+			<real>660</real>
 		</dict>
 		<key>7A390B5C-3786-4DF4-8B3C-7681A1DA5042</key>
 		<dict>
 			<key>note</key>
 			<string>Show Lists</string>
 			<key>xpos</key>
-			<integer>190</integer>
+			<real>190</real>
 			<key>ypos</key>
-			<integer>400</integer>
+			<real>400</real>
 		</dict>
 		<key>7BA455F0-06A5-46B2-85DD-AF63CD7D487F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>80</integer>
+			<real>80</real>
 		</dict>
 		<key>7D84AE1E-C069-474A-87E0-09D0E9B5D5A4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1430</integer>
+			<real>1430</real>
 			<key>ypos</key>
-			<integer>315</integer>
+			<real>315</real>
 		</dict>
 		<key>7D968158-D561-498A-AC50-C59D69C775E0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>7F09658F-5D8B-4B3A-8EE3-9C10A0112ADC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>800C1C09-DBD1-4558-A0D0-ED9E7B82CAAD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1040</integer>
+			<real>1040</real>
 			<key>ypos</key>
-			<integer>620</integer>
+			<real>620</real>
 		</dict>
 		<key>894661DD-1987-421B-BD3E-509388201DC1</key>
 		<dict>
 			<key>note</key>
 			<string>Show List in Things</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<real>770</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 		<key>89C6F310-A477-410B-9CD8-FDA383F0D34C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1040</integer>
+			<real>1040</real>
 			<key>ypos</key>
-			<integer>760</integer>
+			<real>760</real>
 		</dict>
 		<key>8B58F7DE-3D23-4985-BB39-A34A703ED3F7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>410</real>
 			<key>ypos</key>
-			<integer>340</integer>
+			<real>340</real>
 		</dict>
 		<key>98EF3611-33F6-42B7-948D-59CF038413AC</key>
 		<dict>
 			<key>note</key>
 			<string>Back to Lists</string>
 			<key>xpos</key>
-			<integer>1565</integer>
+			<real>1565</real>
 			<key>ypos</key>
-			<integer>280</integer>
+			<real>280</real>
 		</dict>
 		<key>99FD94F8-F88E-4BCB-A0BA-658A75667091</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>410</real>
 			<key>ypos</key>
-			<integer>200</integer>
+			<real>200</real>
 		</dict>
 		<key>A477FDE2-573E-4348-BD34-6BD36A22A826</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2350</integer>
+			<real>2350</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>A854D75A-64D4-4CA3-92D4-3D98FDC269E6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>260</integer>
+			<real>260</real>
 		</dict>
 		<key>AB48B92A-364C-4978-AC71-292006C9C8D4</key>
 		<dict>
 			<key>note</key>
 			<string>Show To-do in Things</string>
 			<key>xpos</key>
-			<integer>1950</integer>
+			<real>1950</real>
 			<key>ypos</key>
-			<integer>120</integer>
+			<real>120</real>
 		</dict>
 		<key>BBAABDEF-4F1D-480F-BC59-9332E3CB1814</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>410</real>
 			<key>ypos</key>
-			<integer>620</integer>
+			<real>620</real>
 		</dict>
 		<key>C06FEEC0-22B8-4B36-9C52-7B9804EDFED8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>140</integer>
+			<real>140</real>
 		</dict>
 		<key>C5B4F750-0BBF-4FE1-BD1A-D7AF181DF676</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>30</integer>
+			<real>30</real>
 		</dict>
 		<key>C8CD5DD7-9957-4CAD-9D0A-AC621FBBBE20</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1040</integer>
+			<real>1040</real>
 			<key>ypos</key>
-			<integer>60</integer>
+			<real>60</real>
 		</dict>
 		<key>C9F0F5B3-9BE5-4696-98F4-AA981B983CBF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<real>620</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>CAC78ECB-08A9-455B-9E1C-E474DC4F8FC5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2350</integer>
+			<real>2350</real>
 			<key>ypos</key>
-			<integer>330</integer>
+			<real>330</real>
 		</dict>
 		<key>CBDEC9D9-2684-478D-B33E-71FFD4E3CBB5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>720</integer>
+			<real>720</real>
 		</dict>
 		<key>D07096D0-CF69-4627-8B39-F57C48DA74D0</key>
 		<dict>
 			<key>note</key>
 			<string>Empty Trash</string>
 			<key>xpos</key>
-			<integer>1950</integer>
+			<real>1950</real>
 			<key>ypos</key>
-			<integer>680</integer>
+			<real>680</real>
 		</dict>
 		<key>D229F3C6-3F25-46CB-B0C4-6F07E8C72A22</key>
 		<dict>
 			<key>note</key>
 			<string>Show To-Dos</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<real>770</real>
 			<key>ypos</key>
-			<integer>170</integer>
+			<real>170</real>
 		</dict>
 		<key>DA4C9E1E-0596-41FB-BC31-7373CBDFD0ED</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>30</integer>
+			<real>30</real>
 		</dict>
 		<key>E446357E-42D5-4C7E-82AD-7F67D5EA6626</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>730</integer>
+			<real>730</real>
 		</dict>
 		<key>EAAA3D70-E0BE-4CC4-842D-4148135D798D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>2170</integer>
+			<real>2170</real>
 			<key>ypos</key>
-			<integer>495</integer>
+			<real>495</real>
 		</dict>
 		<key>EAF9E8D1-A99E-4002-90CC-F6B909C2C6CD</key>
 		<dict>
 			<key>note</key>
 			<string>Show To-Dos In Tag</string>
 			<key>xpos</key>
-			<integer>1410</integer>
+			<real>1410</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>EFCD7102-8A0D-4B45-B954-B6141FEABAD2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>600</integer>
+			<real>600</real>
 		</dict>
 		<key>F2074555-17FA-4CD8-9B40-89C3FC65259E</key>
 		<dict>
 			<key>note</key>
 			<string>Mark as Canceled</string>
 			<key>xpos</key>
-			<integer>1950</integer>
+			<real>1950</real>
 			<key>ypos</key>
-			<integer>400</integer>
+			<real>400</real>
 		</dict>
 		<key>F22DCA30-1848-4A21-AA23-F45DB8C6D393</key>
 		<dict>
 			<key>xpos</key>
-			<integer>945</integer>
+			<real>945</real>
 			<key>ypos</key>
-			<integer>735</integer>
+			<real>735</real>
 		</dict>
 		<key>F48939C0-502A-4B5A-A0D4-5B038168D8A5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>340</integer>
+			<real>340</real>
 		</dict>
 		<key>F65ACC2B-FA72-40A7-A349-BEF699F75948</key>
 		<dict>
 			<key>xpos</key>
-			<integer>480</integer>
+			<real>480</real>
 			<key>ypos</key>
-			<integer>590</integer>
+			<real>590</real>
 		</dict>
 		<key>FAACADF3-ACD4-4268-90EC-26BCD0BB5598</key>
 		<dict>
 			<key>note</key>
 			<string>Delete</string>
 			<key>xpos</key>
-			<integer>1950</integer>
+			<real>1950</real>
 			<key>ypos</key>
-			<integer>540</integer>
+			<real>540</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
