@@ -6,7 +6,7 @@
   <a href="https://github.com/xilopaint/alfred-things/releases">
   <img src="https://img.shields.io/github/downloads/xilopaint/alfred-things/total.svg"></a>
   <a href="https://github.com/xilopaint/alfred-things/blob/main/LICENSE.md">
-  <img src="https://img.shields.io/github/license/xilopaint/alfred-things"></a>  
+  <img src="https://img.shields.io/github/license/xilopaint/alfred-things"></a>
 </p>
 
 <p align="center">
@@ -19,22 +19,26 @@ Interact with [Things][1] using [Alfred][2].
 
 ## Usage
 
-* Use the keyword `todo` to show Things lists and press `↩` to explore the
-  contained to-dos of the selected list. The following modifier keys can be
-  used to trigger actions in lists:
-  * `⌘ + ↩` to show the selected list in Things UI;
-  * `⌥ + ↩` to invoke the Quick Entry window;
-  * `⌃ + ↩` to show tags in the target list;
-  * `fn + ↩` to empty the Trash.
+Show your Things lists via the `todo` keyword.
 
-* Select a to-do and press `↩` for displaying it in Things UI. The following
-  modifier keys can be used to trigger actions in to-dos:
-  * `⌘ + ↩` to mark a to-do as completed;
-  * `⌥ + ↩` to mark a to-do as canceled;
-  * `⌃ + ↩` to delete a to-do;
-  * `fn + ↩` to empty the Trash.
+![demo-1](src/images/about/demo-1.png)
 
-* Select a project and press `⇧ + ↩` to explore the contained to-dos.
+<kbd>↩</kbd>: Show list items.  
+<kbd>⌘</kbd><kbd>↩</kbd>: Open in Things.  
+<kbd>⌥</kbd><kbd>↩</kbd>: Open Quick Entry window.  
+<kbd>⌃</kbd><kbd>↩</kbd>: Show tags in list.  
+<kbd>fn</kbd><kbd>↩</kbd>: Empty Trash.
+  
+When displaying the contents of a list, new actions become available.
+
+![demo-2](src/images/about/demo-2.png)
+
+<kbd>↩</kbd>: Open in Things.  
+<kbd>⌘</kbd><kbd>↩</kbd>: Mark completed.  
+<kbd>⌥</kbd><kbd>↩</kbd>: Mark canceled.  
+<kbd>⌃</kbd><kbd>↩</kbd>: Delete.  
+<kbd>fn</kbd><kbd>↩</kbd>: Empty Trash.  
+<kbd>⇧</kbd><kbd>↩</kbd>: Show to-dos in project.
 
 ## Contribute
 
