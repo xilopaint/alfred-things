@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/release/xilopaint/alfred-things.svg"></a>
   <a href="https://github.com/xilopaint/alfred-things/releases">
   <img src="https://img.shields.io/github/downloads/xilopaint/alfred-things/total.svg"></a>
-  <a href="https://github.com/xilopaint/alfred-things/blob/main/README.md">
+  <a href="https://github.com/xilopaint/alfred-things/blob/main/LICENSE.md">
   <img src="https://img.shields.io/github/license/xilopaint/alfred-things"></a>  
 </p>
 
