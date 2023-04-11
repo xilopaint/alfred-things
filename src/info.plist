@@ -818,7 +818,7 @@
 	<key>createdby</key>
 	<string>Arthur Pinheiro</string>
 	<key>description</key>
-	<string>Interact with Things 3 using Alfred</string>
+	<string>Interact with Things</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -885,7 +885,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showToDosInProject", "{query}"}</string>
+				<string>./things.js showToDosInProject {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -895,7 +895,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -986,13 +986,13 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showToDoInThings", "{query}"}</string>
+				<string>./things.js showToDoInThings {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1047,9 +1047,9 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showToDos"}</string>
+				<string>./things.js showToDos</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -1057,7 +1057,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1150,13 +1150,13 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"markAsCompleted", "{query}"}</string>
+				<string>./things.js markAsCompleted {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1212,13 +1212,13 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showListInThings"}</string>
+				<string>./things.js showListInThings</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1358,13 +1358,13 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"markAsCanceled", "{query}"}</string>
+				<string>./things.js markAsCanceled {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1436,9 +1436,9 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showLists"}</string>
+				<string>./things.js showLists</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -1446,7 +1446,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -1465,13 +1465,13 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"addToDo"}</string>
+				<string>./things.js addToDo</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1577,11 +1577,16 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"deleteToDo", "{query}"}</string>
+				<string>on run argv
+    tell application id "com.culturedcode.ThingsMac"
+        set toDo to to do id (argv as text)
+        move toDo to list id "TMTrashListSource"
+    end tell
+end run</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -1635,7 +1640,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showTagsInList"}</string>
+				<string>./things.js showTagsInList</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1645,7 +1650,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1697,7 +1702,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"showToDosInTag", "{query}"}</string>
+				<string>./things.js showToDosInTag {query}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1707,7 +1712,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1895,13 +1900,13 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>run script "things.applescript" with parameters {"emptyTrash"}</string>
+				<string>./things.js emptyTrash</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -2018,40 +2023,28 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string># Things for Alfred
+	<string>## Usage
 
-Interact with [Things 3](https://culturedcode.com/things/) using [Alfred](http://www.alfredapp.com/).
+Show your Things lists via the `todo` keyword.
 
-## Usage
+![demo-1](images/about/demo-1.png)
 
-* Use the keyword `todo` to show Things lists and press `↩` to explore the
-  contained to-dos of the selected list. The following modifier keys can be
-  used to trigger actions in lists:
-  - `⌘ + ↩` to show the selected list in Things UI;
-  - `⌥ + ↩` to invoke the Quick Entry window;
-  - `⌃ + ↩` to show tags in the target list;
-  - `fn + ↩` to empty the Trash.
+&lt;kbd&gt;↩&lt;/kbd&gt;: Show list items.  
+&lt;kbd&gt;⌘&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Open in Things.  
+&lt;kbd&gt;⌥&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Open Quick Entry window.  
+&lt;kbd&gt;⌃&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Show tags in list.  
+&lt;kbd&gt;fn&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Empty Trash.
+  
+When displaying the contents of a list, new actions become available.
 
-* Select a to-do and press `↩` for displaying it in Things UI. The following
-  modifier keys can be used to trigger actions in to-dos:
-  - `⌘ + ↩` to mark a to-do as completed;
-  - `⌥ + ↩` to mark a to-do as canceled;
-  - `⌃ + ↩` to delete a to-do;
-  - `fn + ↩` to empty the Trash.
+![demo-2](images/about/demo-2.png)
 
-* Select a project and press `⇧ + ↩` to explore the contained to-dos.
-
-## Contribute
-
-To report a bug or request a feature, please [create an issue](https://github.com/xilopaint/alfred-things/issues) or [submit a pull request](https://github.com/xilopaint/alfred-things/pulls).
-
-## Credits
-
-The to-do icon is created by [Jason Zigrino](https://jasonzigrino.deviantart.com) and released under the [Creative Commons BY-NC-ND 3.0 license](https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode).
-
-## License
-
-**Things** workflow is released under the [MIT License](https://opensource.org/licenses/MIT).</string>
+&lt;kbd&gt;↩&lt;/kbd&gt;: Open in Things.  
+&lt;kbd&gt;⌘&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Mark completed.  
+&lt;kbd&gt;⌥&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Mark canceled.  
+&lt;kbd&gt;⌃&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Delete.  
+&lt;kbd&gt;fn&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Empty Trash.  
+&lt;kbd&gt;⇧&lt;/kbd&gt; &lt;kbd&gt;↩&lt;/kbd&gt;: Show to-dos in project.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0D3E316F-3292-4631-9119-7402E90B20FB</key>
@@ -2432,9 +2425,31 @@ The to-do icon is created by [Jason Zigrino](https://jasonzigrino.deviantart.com
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>todo</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Things Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>things_keyword</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>1.8</string>
+	<string>2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
