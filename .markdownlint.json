@@ -1,0 +1,6 @@
+{
+    "default": true,
+    "MD033": {
+      "allowed_elements": [ "h1", "p", "a", "img", "kbd" ]
+    }
+}
