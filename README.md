@@ -9,12 +9,6 @@
   <img src="https://img.shields.io/github/license/xilopaint/alfred-things"></a>
 </p>
 
-<p align="center">
-    <img src="demo.png">
-</p>
-
-## Description
-
 Interact with [Things][1] using [Alfred][2].
 
 ## Usage
@@ -23,22 +17,22 @@ Show your Things lists via the `todo` keyword.
 
 ![demo-1](src/images/about/demo-1.png)
 
-<kbd>↩</kbd>: Show list items.  
-<kbd>⌘</kbd><kbd>↩</kbd>: Open in Things.  
-<kbd>⌥</kbd><kbd>↩</kbd>: Open Quick Entry window.  
-<kbd>⌃</kbd><kbd>↩</kbd>: Show tags in list.  
-<kbd>fn</kbd><kbd>↩</kbd>: Empty Trash.
+<kbd>↩&#xFE0E;</kbd>: Show list items.  
+<kbd>⌘</kbd><kbd>↩&#xFE0E;</kbd>: Open in Things.  
+<kbd>⌥</kbd><kbd>↩&#xFE0E;</kbd>: Open Quick Entry window.  
+<kbd>⌃</kbd><kbd>↩&#xFE0E;</kbd>: Show tags in list.  
+<kbd>fn</kbd><kbd>↩&#xFE0E;</kbd>: Empty Trash.
   
 When displaying the contents of a list, new actions become available.
 
 ![demo-2](src/images/about/demo-2.png)
 
-<kbd>↩</kbd>: Open in Things.  
-<kbd>⌘</kbd><kbd>↩</kbd>: Mark completed.  
-<kbd>⌥</kbd><kbd>↩</kbd>: Mark canceled.  
-<kbd>⌃</kbd><kbd>↩</kbd>: Delete.  
-<kbd>fn</kbd><kbd>↩</kbd>: Empty Trash.  
-<kbd>⇧</kbd><kbd>↩</kbd>: Show to-dos in project.
+<kbd>↩&#xFE0E;</kbd>: Open in Things.  
+<kbd>⌘</kbd><kbd>↩&#xFE0E;</kbd>: Mark completed.  
+<kbd>⌥</kbd><kbd>↩&#xFE0E;</kbd>: Mark canceled.  
+<kbd>⌃</kbd><kbd>↩&#xFE0E;</kbd>: Delete.  
+<kbd>fn</kbd><kbd>↩&#xFE0E;</kbd>: Empty Trash.  
+<kbd>⇧</kbd><kbd>↩&#xFE0E;</kbd>: Show to-dos in project.
 
 ## Contribute
 
