@@ -423,7 +423,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5982D542-803C-4D86-961C-71987A5FB83D</string>
+				<string>D229F3C6-3F25-46CB-B0C4-6F07E8C72A22</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -451,7 +451,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F65ACC2B-FA72-40A7-A349-BEF699F75948</string>
+				<string>32B573A3-37B2-4795-9952-F711E257BE30</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -477,7 +477,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C5B4F750-0BBF-4FE1-BD1A-D7AF181DF676</string>
+				<string>6C60799D-2C1A-47F4-B53B-868E05505976</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -828,40 +828,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>showToDosInProject</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>C5B4F750-0BBF-4FE1-BD1A-D7AF181DF676</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>showToDosInProject</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>DA4C9E1E-0596-41FB-BC31-7373CBDFD0ED</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -895,7 +861,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -981,6 +947,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>showToDosInProject</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>DA4C9E1E-0596-41FB-BC31-7373CBDFD0ED</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -992,7 +973,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1057,7 +1038,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1071,42 +1052,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>showToDos</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>5982D542-803C-4D86-961C-71987A5FB83D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>showToDos</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -1145,6 +1092,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>showToDos</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1156,7 +1118,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1218,7 +1180,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1364,7 +1326,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1446,7 +1408,7 @@
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -1471,7 +1433,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -1574,6 +1536,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>showTags</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>C9F0F5B3-9BE5-4696-98F4-AA981B983CBF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1598,21 +1575,6 @@ end run</string>
 			<string>FAACADF3-ACD4-4268-90EC-26BCD0BB5598</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>showTags</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>C9F0F5B3-9BE5-4696-98F4-AA981B983CBF</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1650,7 +1612,7 @@ end run</string>
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1712,7 +1674,7 @@ end run</string>
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -1764,25 +1726,6 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>showTags</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>F65ACC2B-FA72-40A7-A349-BEF699F75948</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{query}</string>
 				<key>passthroughargument</key>
@@ -1804,7 +1747,7 @@ end run</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -1906,7 +1849,7 @@ end run</string>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -2089,9 +2032,9 @@ When displaying the contents of a list, new actions become available.
 		<key>3867DA5D-4EF1-486E-9466-FFB2DE5C28D4</key>
 		<dict>
 			<key>xpos</key>
-			<real>620</real>
+			<real>575</real>
 			<key>ypos</key>
-			<real>170</real>
+			<real>240</real>
 		</dict>
 		<key>3D06989E-EC34-4184-8C54-539DAE7FB7D9</key>
 		<dict>
@@ -2122,13 +2065,6 @@ When displaying the contents of a list, new actions become available.
 			<real>2170</real>
 			<key>ypos</key>
 			<real>365</real>
-		</dict>
-		<key>5982D542-803C-4D86-961C-71987A5FB83D</key>
-		<dict>
-			<key>xpos</key>
-			<real>480</real>
-			<key>ypos</key>
-			<real>170</real>
 		</dict>
 		<key>5C00FF8F-070B-48E5-B465-A1219B8443A1</key>
 		<dict>
@@ -2294,13 +2230,6 @@ When displaying the contents of a list, new actions become available.
 			<key>ypos</key>
 			<real>140</real>
 		</dict>
-		<key>C5B4F750-0BBF-4FE1-BD1A-D7AF181DF676</key>
-		<dict>
-			<key>xpos</key>
-			<real>1110</real>
-			<key>ypos</key>
-			<real>30</real>
-		</dict>
 		<key>C8CD5DD7-9957-4CAD-9D0A-AC621FBBBE20</key>
 		<dict>
 			<key>xpos</key>
@@ -2311,9 +2240,9 @@ When displaying the contents of a list, new actions become available.
 		<key>C9F0F5B3-9BE5-4696-98F4-AA981B983CBF</key>
 		<dict>
 			<key>xpos</key>
-			<real>620</real>
+			<real>575</real>
 			<key>ypos</key>
-			<real>590</real>
+			<real>520</real>
 		</dict>
 		<key>CAC78ECB-08A9-455B-9E1C-E474DC4F8FC5</key>
 		<dict>
@@ -2350,9 +2279,9 @@ When displaying the contents of a list, new actions become available.
 		<key>DA4C9E1E-0596-41FB-BC31-7373CBDFD0ED</key>
 		<dict>
 			<key>xpos</key>
-			<real>1250</real>
+			<real>1165</real>
 			<key>ypos</key>
-			<real>30</real>
+			<real>90</real>
 		</dict>
 		<key>E446357E-42D5-4C7E-82AD-7F67D5EA6626</key>
 		<dict>
@@ -2406,13 +2335,6 @@ When displaying the contents of a list, new actions become available.
 			<real>1770</real>
 			<key>ypos</key>
 			<real>340</real>
-		</dict>
-		<key>F65ACC2B-FA72-40A7-A349-BEF699F75948</key>
-		<dict>
-			<key>xpos</key>
-			<real>480</real>
-			<key>ypos</key>
-			<real>590</real>
 		</dict>
 		<key>FAACADF3-ACD4-4268-90EC-26BCD0BB5598</key>
 		<dict>
