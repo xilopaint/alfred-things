@@ -54,10 +54,10 @@ function showLists() {
     const list = lists[i];
     const listName = list.name();
     const listId = list.id();
-    const icons = ["inbox", "today", "anytime", "upcoming", "someday", null, "logbook", "trash"];
+    const icons = ["inbox", "today", null, "anytime", "upcoming", "someday", null, "logbook", "trash"];
 
     let icon = null;
-    if (i < 8 && i !== 5) {
+    if (i < 9 && i !==2 && i !== 6) {
       icon = "images/icons/" + icons[i] + ".png";
     } else if (i > 8) {
       icon = "images/icons/area.png";
