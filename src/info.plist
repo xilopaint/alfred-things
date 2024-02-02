@@ -2371,7 +2371,7 @@ When displaying the contents of a list, new actions become available.
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2.0.1</string>
+	<string>2.0.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/xilopaint/alfred-things</string>
 </dict>
